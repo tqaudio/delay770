@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+	<fonts>
+		<font bold="true" font-name="Helvetica" name="ProductNameFont" size="27"/>
+	</fonts>
+	<colors>
+		<color name="UnitCColor" rgba="#c3c3c3ff"/>
+	</colors>
+	<template background-color="~ BlackCColor" class="CViewContainer" name="Delay770" size="480, 480" transparent="false">
+		<!-- DELAY TIME KNOB -->
+		<view angle-range="270" angle-start="135" background-offset="0, 0" bitmap="knob_1x" class="CAnimKnob" control-tag="Parameters::kDelayTimeId" opacity="1" origin="90, 32" size="128, 128" tooltip="DELAY TIME" transparent="false" wants-focus="true" wheel-inc-value="0.0001" zoom-factor="1.5"/>
+		<view back-color="~ TransparentCColor" class="CTextEdit" control-tag="Parameters::kDelayTimeId" font="~ NormalFontVeryBig" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="114, 96" size="80, 24" text-alignment="center" title="0.00" transparent="false"/>
+		<view back-color="~ TransparentCColor" class="CTextLabel" font="~ NormalFontSmaller" font-antialias="true" font-color="UnitCColor" opacity="1" origin="90, 120" size="128, 24" text-alignment="center" title="ms" transparent="false"/>
+		<view back-color="~ TransparentCColor" class="CTextLabel" font="~ NormalFont" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="90, 160" size="128, 24" text-alignment="center" title="DELAY TIME" transparent="false"/>
+		<!-- FEEDBACK KNOB -->
+		<view angle-range="270" angle-start="135" background-offset="0, 0" bitmap="knob_1x" class="CAnimKnob" control-tag="Parameters::kFeedbackId" opacity="1" origin="272, 32" size="128, 128" tooltip="Feedback" transparent="false" wants-focus="true" wheel-inc-value="0.0001" zoom-factor="1.5"/>
+		<view back-color="~ TransparentCColor" class="CTextEdit" control-tag="Parameters::kFeedbackId" font="~ NormalFontVeryBig" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="296, 96" size="80, 24" text-alignment="center" title="0.00" transparent="false" wheel-inc-value="0.001"/>
+		<view back-color="~ TransparentCColor" class="CTextLabel" font="~ NormalFontSmaller" font-antialias="true" font-color="UnitCColor" opacity="1" origin="272, 120" size="128, 24" text-alignment="center" title="dB" transparent="false"/>
+		<view back-color="~ BlackCColor" class="CTextLabel" font="~ NormalFont" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="272, 160" size="128, 24" text-alignment="center" title="FEEDBACK" transparent="false"/>
+		<!-- DRY KNOB -->
+		<view angle-range="270" angle-start="135" background-offset="0, 0" bitmap="knob_1x" class="CAnimKnob" control-tag="Parameters::kDryId" opacity="1" origin="90, 224" size="128, 128" tooltip="Dry" transparent="false" wants-focus="true" wheel-inc-value="0.0001" zoom-factor="1.5"/>
+		<view back-color="~ TransparentCColor" class="CTextEdit" control-tag="Parameters::kDryId" font="~ NormalFontVeryBig" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="114, 288" size="80, 24" text-alignment="center" title="0.00" transparent="false"/>
+		<view back-color="~ TransparentCColor" class="CTextLabel" font="~ NormalFontSmaller" font-antialias="true" font-color="UnitCColor" opacity="1" origin="90, 312" size="128, 24" text-alignment="center" title="dB" transparent="false"/>
+		<view back-color="~ BlackCColor" class="CTextLabel" font="~ NormalFont" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="90, 352" size="128, 24" text-alignment="center" title="DRY" transparent="false"/>
+		<!-- WET KNOB -->
+		<view angle-range="270" angle-start="135" background-offset="0, 0" bitmap="knob_1x" class="CAnimKnob" control-tag="Parameters::kWetId" opacity="1" origin="272, 224" size="128, 128" tooltip="Wet" transparent="false" wants-focus="true" wheel-inc-value="0.0001" zoom-factor="1.5"/>
+		<view back-color="~ TransparentCColor" class="CTextEdit" control-tag="Parameters::kWetId" font="~ NormalFontVeryBig" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="296, 288" size="80, 24" title="0.00" transparent="false"/>
+		<view back-color="~ TransparentCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontSmaller" font-antialias="true" font-color="UnitCColor" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="272, 312" round-rect-radius="6" shadow-color="~ BlackCColor" size="128, 24" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="true" text-alignment="center" text-inset="5, 0" text-rotation="0" title="dB" transparent="false"/>
+		<view back-color="~ BlackCColor" class="CTextLabel" font="~ NormalFont" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="272, 352" size="128, 24" text-alignment="center" title="WET" transparent="false"/>
+		<!-- PRODUCT NAME -->
+		<view back-color="~ TransparentCColor" class="CTextLabel" font="ProductNameFont" font-antialias="true" font-color="~ WhiteCColor" opacity="1" origin="0, 432" size="480, 48" text-alignment="center" title="Delay770" transparent="false"/>
+	</template>
+	<custom>
+	</custom>
+	<bitmaps>
+		<bitmap name="knob_1x" path="knob_1x.png"/>
+		<bitmap name="knob_2x" path="knob_2x.png"/>
+		<bitmap name="knob_3x" path="knob_3x.png"/>
+		<bitmap name="onoff_button" path="onoff_button.png"/>
+		<bitmap name="onoff_button_2x" path="onoff_button_2x.png"/>
+		<bitmap name="onoff_button_3x" path="onoff_button_3x.png"/>
+		<bitmap name="slider_background" path="slider_background.png"/>
+		<bitmap name="slider_handle" path="slider_handle.png"/>
+	</bitmaps>
+	<control-tags>
+		<control-tag name="Parameters::kBypassId" tag="100"/>
+		<control-tag name="Parameters::kDelayTimeId" tag="101"/>
+		<control-tag name="Parameters::kFeedbackId" tag="102"/>
+		<control-tag name="Parameters::kDryId" tag="103"/>
+		<control-tag name="Parameters::kWetId" tag="104"/>
+	</control-tags>
+</vstgui-ui-description>
