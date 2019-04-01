@@ -1,0 +1,5 @@
+build/
+test/
+external.avid.aax/
+CoreAudio/
+*_original
