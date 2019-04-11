@@ -1,4 +1,4 @@
-#include "public.sdk/source/main/pluginfactoryvst3.h"
+#include "public.sdk/source/main/pluginfactory.h"
 
 #include "../include/controller.h"
 #include "../include/id.h"
