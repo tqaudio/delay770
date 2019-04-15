@@ -14,7 +14,7 @@ To install the plugin, visit the [TQ Audio website](https://tqaudio.github.io/pr
 
 ----------------
 
-- VST is a trademark of Steinberg Media Technology GmbH.
+- VST is a trademark of Steinberg Media Technologies GmbH, registered in Europe and other countries.
 - Audio Unit is a trademark of Apple Inc.
 - AAX is a trademark of Avid Technology.
 
