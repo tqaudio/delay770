@@ -31,7 +31,7 @@ You need the following tools:
   - [cmake v3.4.3 or later](https://cmake.org/download/)
   - clang-format (optional)
 - Windows
-  - VisualStudio 2017 or later
+  - VisualStudio 2015 or 2017
 - Mac
   - Xcode 10.0 or later
 
