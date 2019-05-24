@@ -35,12 +35,6 @@ You need the following tools:
 - Mac
   - Xcode 10.0 or later
 
-On Windows, I recommend add the path of the `msbuild.exe` to `PATH` variable. Launch `cmd.exe` and run the command like this:
-
-```console
-set PATH=%PATH%;%PROGRAMFILES(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin
-```
-
 ### Build
 
 Launch the console, `cmd.exe` on Windows or 'Terminal.app` on Mac. Then run the following commands:
@@ -55,14 +49,18 @@ cd build
 
 Finally, run the build command depends on each platforms.
 
-**Windows**
+#### Windows
 
 ```console
 ..\tools\windows_setup.bat
 msbuild vstsdk.sln
 ```
 
-**Mac**
+That's it! If the build succeeds, `VST3` folder will be generated.
+
+Note: You should use the developer command prompt, not a normal `cmd.exe`. The developer command prompt comes with the VisualStudio installation. Hit the Windows key and then type "dev" or "developer" to launch.
+
+#### Mac
 
 ```console
 ../tools/darwin_setup.bash
@@ -78,6 +76,10 @@ To build the Audio Unit and AAX version of this plugin, see `AUv2.md` and `AAX.m
 ### Pull request or fork?
 
 This repository accepts only the pull requests such as bug fix. If you want to add new features to the plugin, fork and start developing your own plugin.
+
+## LICENSE
+
+See LICENSE.
 
 ## Author
 
