@@ -1,4 +1,5 @@
 #include "../include/parameter.h"
+#include <math.h>
 
 namespace Delay770 {
 GainParameter::GainParameter(const char *title, int32 flags, int32 id) {
@@ -13,8 +14,8 @@ GainParameter::GainParameter(const char *title, int32 flags, int32 id) {
 void GainParameter::toString(ParamValue normValue, String128 text) const {
   char buffer[32];
 
-  if (normValue > 0.0f) {
-    double db = 20 * log10f(normValue);
+  if (normValue > 0.0) {
+    double db = 20 * log10(normValue);
     sprintf(buffer, "%.2f", db);
   } else {
     strcpy(buffer, "-infinity");
@@ -24,7 +25,7 @@ void GainParameter::toString(ParamValue normValue, String128 text) const {
 }
 
 bool GainParameter::fromString(const TChar *text, ParamValue &normValue) const {
-  double gain = 0.0f;
+  double gain{0.0};
   char buffer[32];
   UString wrapper((TChar *)text, -1);
   wrapper.toAscii(buffer, 32);
@@ -34,14 +35,14 @@ bool GainParameter::fromString(const TChar *text, ParamValue &normValue) const {
     return true;
   }
   if (!wrapper.scanFloat(gain)) {
-    normValue = 0.0f;
+    normValue = 0.0;
     return true;
   }
   if (gain > 0.0) {
     gain = -gain;
   }
 
-  normValue = expf(logf(10.0f) * gain / 20.0f);
+  normValue = exp(log(10.0) * gain / 20.0);
 
   return true;
 }
@@ -64,14 +65,14 @@ void LinearParameter::toString(ParamValue normValue, String128 text) const {
 
 bool LinearParameter::fromString(const TChar *text,
                                  ParamValue &normValue) const {
-  double value = 0.0f;
+  double value{0.0};
   UString wrapper((TChar *)text, -1);
 
   if (!wrapper.scanFloat(value)) {
     return false;
   }
-  if (value < 0.0f) {
-    value = 0.0f;
+  if (value < 0.0) {
+    value = 0.0;
   }
   if (value > mMaxValue) {
     value = mMaxValue;

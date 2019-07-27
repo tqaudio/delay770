@@ -1,13 +1,15 @@
 #pragma once
-
-#include "buffer.h"
-#include "id.h"
-#include "parameter.h"
+#include <math.h>
 
 #include "base/source/fstreamer.h"
 #include "pluginterfaces/base/ibstream.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 #include "public.sdk/source/vst/vstaudioeffect.h"
+
+#include "constants.h"
+#include "delaybuffer.h"
+#include "id.h"
+#include "parameter.h"
 
 using namespace Steinberg;
 using namespace Steinberg::Vst;
@@ -34,18 +36,18 @@ public:
   tresult PLUGIN_API setState(IBStream *state) SMTG_OVERRIDE;
   tresult PLUGIN_API getState(IBStream *state) SMTG_OVERRIDE;
 
-protected:
-  Buffer *mBuffer[2];
+private:
+  DelayBuffer **mDelayBuffer = nullptr;
 
-  AutomationParameter *mDelayTimes;
-  AutomationParameter *mFeedbacks;
-  AutomationParameter *mDries;
-  AutomationParameter *mWets;
+  AutomationParameter *mDelayTimes = nullptr;
+  AutomationParameter *mFeedbacks = nullptr;
+  AutomationParameter *mDries = nullptr;
+  AutomationParameter *mWets = nullptr;
 
   bool mBypass = false;
-  ParamValue mDelayTime;
-  ParamValue mFeedback;
-  ParamValue mDry;
-  ParamValue mWet;
+  ParamValue mDelayTime = Constants::defaultDelayTime / Constants::maxDelayTime;
+  ParamValue mFeedback = exp(log(10.0) * Constants::defaultFeedback / 20.0);
+  ParamValue mDry = exp(log(10.0) * Constants::defaultDry / 20.0);
+  ParamValue mWet = exp(log(10.0) * Constants::defaultWet / 20.0);
 };
 } // namespace Delay770

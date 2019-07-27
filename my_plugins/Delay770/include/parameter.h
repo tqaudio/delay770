@@ -1,22 +1,7 @@
 #pragma once
 
-#define MAX_DURATION 1000.0f      /* ms */
-
-#define DEFAULT_DELAY_TIME 189.0f /* ms */
-#define DEFAULT_DELAY_TIME_NORMALIZED DEFAULT_DELAY_TIME / MAX_DURATION
-
-#define DEFAULT_FEEDBACK -7.56f /* dB */
-#define DEFAULT_FEEDBACK_NORMALIZED expf(logf(10.0f) * DEFAULT_FEEDBACK / 20.0f)
-
-#define DEFAULT_DRY 0.0f /* dB */
-#define DEFAULT_DRY_NORMALIZED expf(logf(10.0f) * DEFAULT_DRY / 20.0f)
-
-#define DEFAULT_WET -16.0f /* dB */
-#define DEFAULT_WET_NORMALIZED expf(logf(10.0f) * DEFAULT_WET / 20.0f)
-
 #include "pluginterfaces/base/ustring.h"
 #include "public.sdk/source/vst/vsteditcontroller.h"
-#include <math.h>
 #include <string.h>
 
 using namespace Steinberg;
@@ -32,10 +17,8 @@ enum Parameters : ParamID {
 };
 
 struct AutomationParameter {
-public:
-  ParamValue value;
-  bool hasChanged;
-  AutomationParameter() : value(0.0f), hasChanged(false){};
+  ParamValue value = 0.0;
+  bool hasChanged = false;
 };
 
 class GainParameter : public Parameter {

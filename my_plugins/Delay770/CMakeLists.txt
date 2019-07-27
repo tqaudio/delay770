@@ -1,16 +1,16 @@
 set(
   plugin_sources
   include/controller.h
+  include/constants.h
+  include/delaybuffer.h
   include/id.h
   include/processor.h
   include/parameter.h
-  include/version.h
-  include/buffer.h
-  source/factory.cpp
     source/controller.cpp
+    source/delaybuffer.cpp
+    source/factory.cpp
     source/processor.cpp
     source/parameter.cpp
-    source/buffer.cpp
 )
 set(target Delay770)
 smtg_add_vst3plugin(${target} ${plugin_sources})

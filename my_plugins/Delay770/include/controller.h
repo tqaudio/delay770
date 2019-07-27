@@ -1,12 +1,12 @@
 #pragma once
 
-#include "id.h"
-#include "parameter.h"
-
 #include "base/source/fstreamer.h"
 #include "pluginterfaces/base/ibstream.h"
 #include "public.sdk/source/vst/vsteditcontroller.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
+
+#include "id.h"
+#include "parameter.h"
 
 using namespace Steinberg;
 using namespace Steinberg::Vst;

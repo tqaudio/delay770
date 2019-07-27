@@ -1,12 +1,7 @@
 #include "../include/processor.h"
 
 namespace Delay770 {
-Processor::Processor()
-    : mBypass(false), mDelayTime(DEFAULT_DELAY_TIME_NORMALIZED),
-      mFeedback(DEFAULT_FEEDBACK_NORMALIZED), mDry(DEFAULT_DRY_NORMALIZED),
-      mWet(DEFAULT_WET_NORMALIZED) {
-  setControllerClass(ControllerID);
-}
+Processor::Processor() { setControllerClass(ControllerID); }
 
 tresult PLUGIN_API Processor::initialize(FUnknown *context) {
   tresult result = AudioEffect::initialize(context);
@@ -49,9 +44,12 @@ tresult PLUGIN_API Processor::setActive(TBool state) {
     return kResultFalse;
   }
   if (state) {
+    mDelayBuffer = new DelayBuffer *[channelCount];
+
     for (int channel = 0; channel < channelCount; channel++) {
-      mBuffer[channel] = new Buffer(processSetup.sampleRate, MAX_DURATION);
-      mBuffer[channel]->setDelayTime(mDelayTime * MAX_DURATION);
+      mDelayBuffer[channel] =
+          new DelayBuffer(processSetup.sampleRate, Constants::maxDelayTime);
+      mDelayBuffer[channel]->setDelayTime(mDelayTime * Constants::maxDelayTime);
     }
     mDelayTimes = new AutomationParameter[processSetup.maxSamplesPerBlock];
     mFeedbacks = new AutomationParameter[processSetup.maxSamplesPerBlock];
@@ -59,8 +57,10 @@ tresult PLUGIN_API Processor::setActive(TBool state) {
     mWets = new AutomationParameter[processSetup.maxSamplesPerBlock];
   } else {
     for (int channel = 0; channel < channelCount; channel++) {
-      delete mBuffer[channel];
+      delete mDelayBuffer[channel];
     }
+
+    delete mDelayBuffer;
     delete mDelayTimes;
     delete mFeedbacks;
     delete mDries;
@@ -98,7 +98,7 @@ tresult PLUGIN_API Processor::process(ProcessData &data) {
       }
       switch (paramQueue->getParameterId()) {
       case Parameters::kBypassId:
-        mBypass = (value > 0.5f);
+        mBypass = (value > 0.5);
         break;
       case Parameters::kDelayTimeId:
         mDelayTime = value;
@@ -139,8 +139,8 @@ tresult PLUGIN_API Processor::process(ProcessData &data) {
         outputChannel = data.outputs[0].channelBuffers32[channel];
 
         if (mDelayTimes[sample].hasChanged) {
-          mBuffer[channel]->setDelayTime(mDelayTimes[sample].value *
-                                         MAX_DURATION);
+          mDelayBuffer[channel]->setDelayTime(mDelayTimes[sample].value *
+                                              Constants::maxDelayTime);
           if (channel == channelCount - 1) {
             mDelayTimes[sample].hasChanged = false;
           }
@@ -164,9 +164,9 @@ tresult PLUGIN_API Processor::process(ProcessData &data) {
           }
         }
 
-        float delay = mBuffer[channel]->read();
+        float delay = mDelayBuffer[channel]->read();
         outputChannel[sample] = delay * mWet + inputChannel[sample] * mDry;
-        mBuffer[channel]->write(inputChannel[sample] + delay * mFeedback);
+        mDelayBuffer[channel]->write(inputChannel[sample] + delay * mFeedback);
       }
     }
   }
@@ -180,11 +180,11 @@ tresult PLUGIN_API Processor::setState(IBStream *state) {
   }
 
   IBStreamer streamer(state, kLittleEndian);
-  int32 savedBypass = 0;
-  float savedDelayTime = 0.0f;
-  float savedFeedback = 0.0f;
-  float savedDry = 0.0f;
-  float savedWet = 0.0f;
+  int32 savedBypass{0};
+  float savedDelayTime{0.0};
+  float savedFeedback{0.0};
+  float savedDry{0.0};
+  float savedWet{0.0};
 
   if (!streamer.readInt32(savedBypass)) {
     return kResultFalse;

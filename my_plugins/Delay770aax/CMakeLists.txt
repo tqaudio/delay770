@@ -7,14 +7,14 @@ if(SMTG_AAX_SDK_PATH AND SMTG_ADD_VSTGUI)
   set(
     Delay770_aax_sources
     source/aax.cpp
-    ../Delay770/include/buffer.h
+    ../Delay770/include/delaybuffer.h
     ../Delay770/include/controller.h
+    ../Delay770/include/constants.h
     ../Delay770/include/id.h
     ../Delay770/include/parameter.h
     ../Delay770/include/processor.h
-    ../Delay770/include/version.h
-    ../Delay770/source/buffer.cpp
     ../Delay770/source/controller.cpp
+    ../Delay770/source/delaybuffer.cpp
     ../Delay770/source/factory.cpp
     ../Delay770/source/parameter.cpp
     ../Delay770/source/processor.cpp

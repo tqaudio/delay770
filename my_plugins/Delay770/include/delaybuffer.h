@@ -1,21 +1,19 @@
 #pragma once
 
-#include <math.h>
-
 namespace Delay770 {
-class Buffer {
+class DelayBuffer {
 public:
-  Buffer(int sampleRate, double capacity /* ms */);
-  ~Buffer();
+  DelayBuffer(int sampleRate, double capacity /* ms */);
+  ~DelayBuffer();
 
   void setDelayTime(double duration);
 
   double read();
   void write(double value);
 
-protected:
-  int mSampleRate; // e.g. 48000
-  int mCapacity;   // e.g. 48000
+private:
+  int mSampleRate; // e.g. 48000 (Hz)
+  int mCapacity;   // e.g. 48000 (samples)
   double mReadHead;
   int mWriteHead;
   double mInterval;

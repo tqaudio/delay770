@@ -14,7 +14,7 @@ tresult PLUGIN_API Controller::initialize(FUnknown *context) {
                           Parameters::kBypassId);
 
   LinearParameter *delayTime = new LinearParameter(
-      "Delay Time", "ms", 1000.0f, 2, ParameterInfo::kCanAutomate,
+      "Delay Time", "ms", 1000.0, 2, ParameterInfo::kCanAutomate,
       Parameters::kDelayTimeId);
   parameters.addParameter(delayTime);
 
@@ -39,11 +39,11 @@ tresult PLUGIN_API Controller::setComponentState(IBStream *state) {
   }
 
   IBStreamer streamer(state, kLittleEndian);
-  int32 savedBypass;
-  float savedDelayTime = 0.0f;
-  float savedFeedback = 0.0f;
-  float savedDry = 0.0f;
-  float savedWet = 0.0f;
+  int32 savedBypass{0};
+  float savedDelayTime{0.0};
+  float savedFeedback{0.0};
+  float savedDry{0.0};
+  float savedWet{0.0};
 
   if (!streamer.readInt32(savedBypass)) {
     return kResultFalse;
