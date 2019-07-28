@@ -48,7 +48,8 @@ tresult PLUGIN_API Processor::setActive(TBool state) {
 
     for (int channel = 0; channel < channelCount; channel++) {
       mDelayBuffer[channel] =
-          new DelayBuffer(processSetup.sampleRate, Constants::maxDelayTime);
+          new DelayBuffer(processSetup.sampleRate, Constants::maxDelayTime,
+                          mDelayTime * Constants::maxDelayTime);
       mDelayBuffer[channel]->setDelayTime(mDelayTime * Constants::maxDelayTime);
     }
     mDelayTimes = new AutomationParameter[processSetup.maxSamplesPerBlock];
@@ -167,6 +168,7 @@ tresult PLUGIN_API Processor::process(ProcessData &data) {
         float delay = mDelayBuffer[channel]->read();
         outputChannel[sample] = delay * mWet + inputChannel[sample] * mDry;
         mDelayBuffer[channel]->write(inputChannel[sample] + delay * mFeedback);
+        mDelayBuffer[channel]->tick();
       }
     }
   }

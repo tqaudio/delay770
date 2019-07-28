@@ -37,8 +37,6 @@ public:
   tresult PLUGIN_API getState(IBStream *state) SMTG_OVERRIDE;
 
 private:
-  DelayBuffer **mDelayBuffer = nullptr;
-
   AutomationParameter *mDelayTimes = nullptr;
   AutomationParameter *mFeedbacks = nullptr;
   AutomationParameter *mDries = nullptr;
@@ -49,5 +47,7 @@ private:
   ParamValue mFeedback = exp(log(10.0) * Constants::defaultFeedback / 20.0);
   ParamValue mDry = exp(log(10.0) * Constants::defaultDry / 20.0);
   ParamValue mWet = exp(log(10.0) * Constants::defaultWet / 20.0);
+
+  DelayBuffer **mDelayBuffer = nullptr;
 };
 } // namespace Delay770
